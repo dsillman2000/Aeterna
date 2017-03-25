@@ -11,9 +11,10 @@ app = Flask(__name__)
 @app.route('/analyze/<twitter>')
 def index(twitter):
     posts = get_posts(twitter)
-    print(twitter)
-    print(posts)
-    return "This is twitter: " + str(posts)
+    texts = [post.text for post in posts]
+    print(texts)
+
+    return str(posts)
 
 if __name__ == '__main__':
     app.run()
