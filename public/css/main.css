@@ -5,3 +5,9 @@ div.top{
     font-size: 3.2em;
     padding: 2%
 }
+
+div.white{
+    padding: 2%;
+    font-family: "Arial";
+    color: #404E5C
+}
