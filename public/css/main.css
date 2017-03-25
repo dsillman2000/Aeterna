@@ -1,13 +1,29 @@
+@font-face{
+    font-family: HelveticaNeueThin;
+    src: url('/css/fonts/HelveticaNeueThin.ttf') format('truetype'),
+    url('/css/fonts/HelveticaNeueThin.otf') format('otf'),
+    url('/css/fonts/HelveticaNeueThin.eot') format('eot'),
+    url('/css/fonts/HelveticaNeueThin.woff') format('woff');
+}
+@font-face{
+    font-family: HelveticaNeueThin;
+    src: url('/css/fonts/HelveticaNeueMedium.ttf') format('truetype'),
+    url('/css/fonts/HelveticaNeueMedium.otf') format('otf'),
+    url('/css/fonts/HelveticaNeueMedium.eot') format('eot'),
+    url('/css/fonts/HelveticaNeueMedium.woff') format('woff');
+    font-weight: bold;
+}
+
 div.top{
     background-color: #404E5C;
     color: #EFF8E2;
-    font-family: "Arial";
+    font-family: "Helvetica Neue";
     font-size: 3.2em;
     padding: 2%
 }
 
 div.white{
     padding: 2%;
-    font-family: "Arial";
+    font-family: "Helvetica Neue";
     color: #404E5C
 }
