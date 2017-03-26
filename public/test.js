@@ -2,7 +2,7 @@
 var xmlHttp = new XMLHttpRequest();
 var dataText = "I want to die right now"
 dataText = encodeURIComponent(dataText.trim())
-console.log(dataText);
+//console.log(dataText);
 xmlHttp.open("GET", "https://watson-api-explorer.mybluemix.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=" + dataText + "&features=sentiment&return_analyzed_text=false&clean=true&fallback_to_raw=true&concepts.limit=8&emotion.document=true&entities.limit=50&entities.emotion=false&entities.sentiment=false&keywords.limit=50&keywords.emotion=false&keywords.sentiment=false&relations.model=en-news&semantic_roles.limit=50&semantic_roles.entities=false&semantic_roles.keywords=false&sentiment.document=true", false); // true for asynchronous
 xmlHttp.send();
 
@@ -11,6 +11,7 @@ var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function ()
     {
+        console.log("got by statechange");
         if(rawFile.readyState === 4)
         {
             if(rawFile.status === 200 || rawFile.status == 0)
