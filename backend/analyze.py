@@ -55,7 +55,8 @@ def analyze(texts):
     return {
         'suicidal': suicidal,
         'worsening': worsening,
-        'worsttext': worsttext
+        'worsttext': worsttext,
+        'negativity': sum(sentiment)/len(sentiment)
     }
 
     
