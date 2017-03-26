@@ -1,5 +1,7 @@
 from watson import get_feelings
 from datetime import datetime
+from scipy import stats
+import numpy as np
 
 #Given the text of each comment we're analyzing, generate Watson analysis and do math on it
 #How it works, based on scores for data
@@ -29,6 +31,7 @@ def analyze(texts):
         sentiment.append(t['analysis']['sentiment']['document']['score'])
         dates.append(datetime(text[1]))
     #Find regression data - the trend
+    slop, intercept, r, p, stderr = stats.linregress(dates, sentiment)
 
     
 def test():
