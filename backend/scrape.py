@@ -7,5 +7,3 @@ def get_inputs(twitter_name):
     for post in posts:
         inputs.append((post.text, post.created_at_in_seconds))
     return inputs
-
-print(get_inputs(''))
