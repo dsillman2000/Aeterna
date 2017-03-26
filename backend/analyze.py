@@ -31,7 +31,25 @@ def analyze(texts):
         sentiment.append(t['analysis']['sentiment']['document']['score'])
         dates.append(datetime(text[1]))
     #Find regression data - the trend
-    slop, intercept, r, p, stderr = stats.linregress(dates, sentiment)
+    slope, intercept, r, p, stderr = stats.linregress(dates, sentiment)
+    worsening = False
+    if p < 0.05 and slope < 0: #Significant result and negative
+        worsening = True
+
+    #Find the percentiles - Q1, Median, Q3
+    #Results affected by Fear, Sadness, sentiment
+    f1, f2, f3 = np.percentile(fear, 25), np.percentile(fear, 50), np.percentile(fear, 75)
+    sad1, sad2, sad3 = np.percentile(sadness, 25), np.percentile(sadness, 50), np.percentile(sadness, 75)
+    sen1, sen2, sen3 = np.percentile(sentiment, 25), np.percentile(sentiment, 50), np.percentile(sentiment, 75)
+    suicidal = False
+    #If the Q3 sentiment score minus the Q1 sad and fear scores is bad enough
+    if sen3 - sad1 - f1 < -0.50:
+        suicidal = True
+    
+    return {
+        'suicidal': suicidal,
+        'worsening': worsening
+    }
 
     
 def test():
