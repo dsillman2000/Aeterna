@@ -13,11 +13,32 @@
 <body style="padding:2%;background-color:#404E5C;font-family: Helvetica Neue">
     <div style="color:#404E5C; font-size:1em; background-color:white;font-weight: 200;">
         <div style="padding:1%" class="row">
-            <div class="col-sm-4"><center><b>Most Worrying Posts</b><hr></center></div>
-            <div class="col-sm-4"><center><b>Risk Likelihood</b><hr></center></div>
+            <div class="col-sm-4"><center><b>Most Worrying Posts</b><hr><p id="mostWorrying">test</p> </center></div>
+            <div class="col-sm-4"><center><b>Risk Likelihood</b><hr><p id="riskLikelihood">test</p> </center></div>
             <div class="col-sm-4"><center><b>History of Mood</b><hr></center></div>
         </div>
     </div>
+
+    <script>
+
+        var xmlHttp = new XMLHttpRequest();
+        var dataText = "I want to die right now"
+        document.getElementById("mostWorrying").innerHTML = dataText;
+        dataText = encodeURIComponent(dataText.trim())
+        console.log(dataText);
+        xmlHttp.open("GET", "https://watson-api-explorer.mybluemix.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=" + dataText + "&features=sentiment&return_analyzed_text=false&clean=true&fallback_to_raw=true&concepts.limit=8&emotion.document=true&entities.limit=50&entities.emotion=false&entities.sentiment=false&keywords.limit=50&keywords.emotion=false&keywords.sentiment=false&relations.model=en-news&semantic_roles.limit=50&semantic_roles.entities=false&semantic_roles.keywords=false&sentiment.document=true", false); // true for asynchronous
+        xmlHttp.send();
+        console.log(xmlHttp.status)
+        console.log(xmlHttp.statusText)
+        console.log(xmlHttp.responseText)
+
+        var response = xmlHttp.responseText
+        var obj = JSON.parse(response);
+        console.log(obj["sentiment"]["document"]["score"])
+        document.getElementById("riskLikelihood").innerHTML = obj["sentiment"]["document"]["score"];
+
+    </script>
+
     <div style="padding:2%;color:#404E5C; font-size:1em; background-color:white;font-weight: 200;">
         <div style="padding:1%" class="row">
             <div class="col-sm-12"><hr><center><b style="font-size:2em">Next Steps:</b></center>
