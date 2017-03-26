@@ -25,6 +25,18 @@
         var dataText = "God, I'm such an idiot. I have to skills or anything, what use am I to anyone?"
         document.getElementById("mostWorrying").innerHTML = dataText;
         dataText = encodeURIComponent(dataText.trim())
+
+        //This is the segment that communicates with the server. Adapt it to fit the page as needed
+        var twitter_id = ''; //e.g. potus (name following @)
+        var url = '/analyze/' + twitter_id;
+        var suicidal, worsening, mostworrying;
+        $.getJSON(url, function(data) {
+            suicidal = data['suicidal']
+            worsening = data['worsening']
+            mostworrying = data['worsttext']
+        });
+        //now do something with those varaibles
+
         console.log(dataText);
         xmlHttp.open("GET", "https://watson-api-explorer.mybluemix.net/natural-language-understanding/api/v1/analyze?version=2017-02-27&text=" + dataText + "&features=sentiment&return_analyzed_text=false&clean=true&fallback_to_raw=true&concepts.limit=8&emotion.document=true&entities.limit=50&entities.emotion=false&entities.sentiment=false&keywords.limit=50&keywords.emotion=false&keywords.sentiment=false&relations.model=en-news&semantic_roles.limit=50&semantic_roles.entities=false&semantic_roles.keywords=false&sentiment.document=true", false); // true for asynchronous
         xmlHttp.send();

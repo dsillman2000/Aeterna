@@ -30,6 +30,12 @@ def analyze(texts):
         sadness.append(t['analysis']['emotion']['document']['emotion']['sadness'])
         sentiment.append(t['analysis']['sentiment']['document']['score'])
         dates.append(datetime(text[1]))
+    worsttext = ''
+    worstscore = 0
+    for i in range(len(results)):
+        if sentiment[i] < worstscore:
+            worstscore = sentiment[i]
+            worsttext = texts[i]
     #Find regression data - the trend
     slope, intercept, r, p, stderr = stats.linregress(dates, sentiment)
     worsening = False
@@ -48,7 +54,8 @@ def analyze(texts):
     
     return {
         'suicidal': suicidal,
-        'worsening': worsening
+        'worsening': worsening,
+        'worsttext': worsttext
     }
 
     
