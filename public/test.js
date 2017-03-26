@@ -23,7 +23,7 @@ var rawFile = new XMLHttpRequest();
     }
     rawFile.send(null);
 
-
+var trumpData =
 
 //Let's say the /me endpoint on the provider API returns a JSON object
 //with the field "name" containing the name "John Doe"
