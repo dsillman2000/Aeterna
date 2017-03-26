@@ -22,6 +22,10 @@ div.top{
     padding: 2%
 }
 
+body.forming{
+    background-image: url('/css/backgroundi');
+}
+
 div.white{
     padding: 2%;
     font-family: "Helvetica Neue";
