@@ -1,10 +1,4 @@
-#How it works, based on scores for data
-#Regression - find if you are on a downward trend
-#Z-score of this data - how bad is the most recent post?
-#Median of the data - is the baseline bad?
-
 from twittertools import get_posts
-
 from flask import Flask
 app = Flask(__name__)
 
